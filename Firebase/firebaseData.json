@@ -1,0 +1,13 @@
+{
+    "acVerify": false, 
+    "airMode": "ac", 
+    "currentTemp": 77, 
+    "fanMode": "auto", 
+    "fanVerify": false, 
+    "heaterVerify": false, 
+    "lastOnlineDate": "2018-04-12", 
+    "lastOnlineTime": "14:49", 
+    "setPoint": 74, 
+    "systemMode": false, 
+    "systemVerify": false
+}
