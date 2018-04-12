@@ -10,7 +10,7 @@ import datetime
 ###########################################
 ####### Load Configuration Settings for Firebase Project #######
 try:
-    with open('/home/pi/rpiHomeThermostat/Firebase/firebaseCredentials.json') as json_data:
+    with open('/home/pi/firebaseCredentials/firebaseCredentials.json') as json_data:
         config = json.load(json_data)
 except:
     print("Error: Could not load firebaseCredentials")
@@ -36,13 +36,13 @@ while True:
             db.child("MainThermostat").update({"lastOnlineTime": currentTime})
         except:
             pass
-        
+
     if currentDate != dateOld:
         dateOld = currentDate
         try:
             db.child("MainThermostat").update({"lastOnlineDate": currentDate})
         except:
             pass
-    
+
     ## Sleep 1 second Before Next Reading ##
     time.sleep(1)

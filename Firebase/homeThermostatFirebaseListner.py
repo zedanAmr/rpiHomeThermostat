@@ -6,7 +6,7 @@ import json
 ###########################################
 ####### Load Configuration Settings for Firebase Project #######
 try:
-    with open('/home/pi/rpiHomeThermostat/Firebase/firebaseCredentials.json') as json_data:
+    with open('/home/pi/firebaseCredentials/firebaseCredentials.json') as json_data:
         config = json.load(json_data)
 except:
     print("Error: Could not load firebaseCredentials")

@@ -9,7 +9,7 @@ import pyrebase
 ###########################################
 ####### Load Configuration Settings for Firebase Project #######
 try:
-    with open('/home/pi/rpiHomeThermostat/Firebase/firebaseCredentials.json') as json_data:
+    with open('/home/pi/firebaseCredentials/firebaseCredentials.json') as json_data:
         config = json.load(json_data)
 except:
     print("Error: Could not load firebaseCredentials")
@@ -44,7 +44,7 @@ sysVOld = True
 acVOld = False
 heaterVOld = False
 fanVOld = False
-        
+
 while True:
     ####### Try Opening the Database File and Importing Data #######
     try:
@@ -101,8 +101,8 @@ while True:
                     acV = True
                     heaterV = False
                     fanV = True
-                    
-            if airMode == "heater": 
+
+            if airMode == "heater":
                 if tempLocal == setPoint or tempLocal > setPoint:
                     GPIO.output(fanPin, 1) # Set fan to off
                     GPIO.output(acPin, 1) # Set heater to off
@@ -117,12 +117,12 @@ while True:
                     acV = False
                     heaterV = True
                     fanV = True
-                
+
         ### Manual Fan Mode ###
         if fanMode == "on":
             GPIO.output(fanPin, 0) # Set fan to on
             fanV = True
-    
+
     ## Update Verification Status Only If They Change ##
     if systemV != sysVOld or acV != acVOld or heaterV != heaterVOld or fanV != fanVOld:
         sysVOld = systemV
@@ -134,6 +134,6 @@ while True:
             db.child("MainThermostat").update({'systemVerify': systemV, 'acVerify': acV, 'heaterVerify': heaterV, 'fanVerify': fanV})
         except:
             pass
-        
+
     ## Sleep 0.1 seconds before next iteration ##
     time.sleep(0.1)
