@@ -10,8 +10,7 @@ ehthumbs.db
 Thumbs.db
 
 ######################
-# Server files #
+# JSON Data Files #
 ######################
-firebaseCredentials.json
-firebaseCredentialsWriter.py
 firebaseData.json
+temp.json
