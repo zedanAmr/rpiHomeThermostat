@@ -1,10 +1,8 @@
-import time
 import pyrebase
 import json
-import os
 
 ###########################################
-#Initialize Firebase Configuration and DB
+# Initialize Firebase Configuration and DB
 ###########################################
 ####### Load Configuration Settings for Firebase Project #######
 try:
@@ -35,14 +33,14 @@ def stream_handler(message):
             firebaseData[i] = data[i]
     elif isinstance(data, int) or isinstance(data, unicode):
         firebaseData[path[1:len(path)]] = data
-        
+
     ####### Write Data to JSON file on OS #######
     try:
         with open('/home/pi/rpiHomeThermostat/Firebase/firebaseData.json', 'w') as json_data:
             json.dump(firebaseData, json_data, sort_keys = True, indent = 4, ensure_ascii = False)
     except:
         pass
-    
+
 ####### Run Listner Function #######
 my_stream = db.child("MainThermostat").stream(stream_handler)
 my_stream.close()
