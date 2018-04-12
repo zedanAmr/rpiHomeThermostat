@@ -19,7 +19,7 @@ db = firebase.database()
 firebaseData = {}
 
 ###########################################
-#Run Listner
+# Run Listner
 ###########################################
 ####### Define Listner Function #######
 def stream_handler(message):
