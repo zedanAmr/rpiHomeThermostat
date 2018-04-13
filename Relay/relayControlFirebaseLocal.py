@@ -9,7 +9,7 @@ import pyrebase
 # cd to Script Directory
 ###########################################
 scriptDirectory = os.path.dirname(os.path.realpath(sys.argv[0]))
-# print(scriptDirectory)
+print(scriptDirectory)
 os.chdir(scriptDirectory)
 # file = open("../TempSensor/temp.txt", "r")
 # print(file.read())
