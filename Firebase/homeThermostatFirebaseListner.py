@@ -44,7 +44,7 @@ def stream_handler(message):
 
     # Write Data to JSON file on OS #######
     try:
-        with open('../Firebase/firebaseData.json', 'w') as json_data:
+        with open('firebaseData.json', 'w') as json_data:
             json.dump(firebaseData, json_data, sort_keys=True, indent=4, ensure_ascii=False)
     except:
         pass
