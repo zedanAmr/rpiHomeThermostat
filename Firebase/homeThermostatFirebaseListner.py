@@ -19,25 +19,27 @@ db = firebase.database()
 firebaseData = {}
 
 ###########################################
-# Run Listner
+# Firebase Stream Listner
 ###########################################
-####### Define Listner Function #######
+# Define Listner Function #################
+
+
 def stream_handler(message):
-    ####### Listen to Data #######
+    # Listen to Data ######################
     path = message["path"]
     data = message["data"]
 
-    ####### Record Data to JSON #######
+    # Record Data to JSON #################
     if isinstance(data, dict):
         for i in data:
             firebaseData[i] = data[i]
     elif isinstance(data, int) or isinstance(data, unicode):
         firebaseData[path[1:len(path)]] = data
 
-    ####### Write Data to JSON file on OS #######
+    # Write Data to JSON file on OS #######
     try:
         with open('/home/pi/rpiHomeThermostat/Firebase/firebaseData.json', 'w') as json_data:
-            json.dump(firebaseData, json_data, sort_keys = True, indent = 4, ensure_ascii = False)
+            json.dump(firebaseData, json_data, sort_keys=True, indent=4, ensure_ascii=False)
     except:
         pass
 
