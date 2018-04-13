@@ -36,11 +36,14 @@ def stream_handler(message):
     data = message["data"]
 
     # Record Data to JSON #################
-    if isinstance(data, dict):
-        for i in data:
-            firebaseData[i] = data[i]
-    elif isinstance(data, int) or isinstance(data, unicode):
-        firebaseData[path[1:len(path)]] = data
+    try:
+        if isinstance(data, dict):
+            for i in data:
+                firebaseData[i] = data[i]
+        elif isinstance(data, int) or isinstance(data, unicode):
+            firebaseData[path[1:len(path)]] = data
+    except:
+        pass
 
     # Write Data to JSON file on OS #######
     try:
@@ -51,4 +54,4 @@ def stream_handler(message):
 
 # Run Listner Function ####################
 my_stream = db.child("MainThermostat").stream(stream_handler)
-my_stream.close()
+# my_stream.close()
