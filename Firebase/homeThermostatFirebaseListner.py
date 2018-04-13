@@ -4,26 +4,24 @@ import json
 ###########################################
 # Initialize Firebase Configuration and DB
 ###########################################
-####### Load Configuration Settings for Firebase Project #######
+# Load Configuration Settings for Firebase Project ##############
 try:
     with open('/home/pi/firebaseCredentials/firebaseCredentials.json') as json_data:
         config = json.load(json_data)
 except:
     print("Error: Could not load firebaseCredentials")
 
-####### Initialize Firebaseand Set DataBase "db" Instance #######
+# Initialize Firebaseand Set DataBase "db" Instance #############
 firebase = pyrebase.initialize_app(config)
 db = firebase.database()
 
-####### Define JSON Dict for Thermostat Data Monitoring #######
+# Define JSON Dict for Thermostat Data Monitoring ###############
 firebaseData = {}
 
 ###########################################
 # Firebase Stream Listner
 ###########################################
 # Define Listner Function #################
-
-
 def stream_handler(message):
     # Listen to Data ######################
     path = message["path"]
@@ -43,6 +41,6 @@ def stream_handler(message):
     except:
         pass
 
-####### Run Listner Function #######
+# Run Listner Function ####################
 my_stream = db.child("MainThermostat").stream(stream_handler)
 my_stream.close()
