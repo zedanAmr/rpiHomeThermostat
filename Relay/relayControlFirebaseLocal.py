@@ -5,11 +5,20 @@ import os
 import pyrebase
 
 ###########################################
+# cd to Script Directory
+###########################################
+scriptDirectory = os.path.dirname(os.path.realpath(sys.argv[0]))
+# print(scriptDirectory)
+os.chdir(scriptDirectory)
+# file = open("../TempSensor/temp.txt", "r")
+# print(file.read())
+
+###########################################
 #Initialize Firebase Configuration and DB
 ###########################################
 ####### Load Configuration Settings for Firebase Project #######
 try:
-    with open('/home/pi/firebaseCredentials/firebaseCredentials.json') as json_data:
+    with open('../../firebaseCredentials/firebaseCredentials.json') as json_data:
         config = json.load(json_data)
 except:
     print("Error: Could not load firebaseCredentials")
@@ -48,7 +57,7 @@ fanVOld = False
 while True:
     ####### Try Opening the Database File and Importing Data #######
     try:
-        with open('/home/pi/rpiHomeThermostat/Firebase/firebaseData.json') as json_data:
+        with open('../Firebase/firebaseData.json') as json_data:
             firebaseData = json.load(json_data)
     except:
         pass
@@ -59,7 +68,7 @@ while True:
 
     ####### Try Opening the Temperature File and Importing Data #######
     try:
-        with open('/home/pi/rpiHomeThermostat/TempSensor/temp.json') as json_data:
+        with open('../TempSensor/temp.json') as json_data:
             tempData = json.load(json_data)
     except:
         pass

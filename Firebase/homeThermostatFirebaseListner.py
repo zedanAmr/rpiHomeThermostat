@@ -1,12 +1,23 @@
 import pyrebase
 import json
+import os
+import sys
+
+###########################################
+# cd to Script Directory
+###########################################
+scriptDirectory = os.path.dirname(os.path.realpath(sys.argv[0]))
+# print(scriptDirectory)
+os.chdir(scriptDirectory)
+# file = open("../TempSensor/temp.txt", "r")
+# print(file.read())
 
 ###########################################
 # Initialize Firebase Configuration and DB
 ###########################################
 # Load Configuration Settings for Firebase Project ##############
 try:
-    with open('/home/pi/firebaseCredentials/firebaseCredentials.json') as json_data:
+    with open('../../firebaseCredentials/firebaseCredentials.json') as json_data:
         config = json.load(json_data)
 except:
     print("Error: Could not load firebaseCredentials")
@@ -36,7 +47,7 @@ def stream_handler(message):
 
     # Write Data to JSON file on OS #######
     try:
-        with open('/home/pi/rpiHomeThermostat/Firebase/firebaseData.json', 'w') as json_data:
+        with open('../Firebase/firebaseData.json', 'w') as json_data:
             json.dump(firebaseData, json_data, sort_keys=True, indent=4, ensure_ascii=False)
     except:
         pass
