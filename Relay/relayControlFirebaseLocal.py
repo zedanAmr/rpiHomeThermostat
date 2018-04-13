@@ -9,10 +9,7 @@ import pyrebase
 # cd to Script Directory
 ###########################################
 scriptDirectory = os.path.dirname(os.path.realpath(sys.argv[0]))
-print(scriptDirectory)
 os.chdir(scriptDirectory)
-# file = open("../TempSensor/temp.txt", "r")
-# print(file.read())
 
 ###########################################
 #Initialize Firebase Configuration and DB

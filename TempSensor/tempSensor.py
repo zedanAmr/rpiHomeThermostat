@@ -1,11 +1,21 @@
 #!/usr/bin/python
 
 import os
+import sys
 import glob
 import time
 import pyrebase
 import json
 
+###########################################
+# cd to Script Directory
+###########################################
+scriptDirectory = os.path.dirname(os.path.realpath(sys.argv[0]))
+os.chdir(scriptDirectory)
+
+###########################################
+# Initizalize Thermocouple
+###########################################
 os.system('modprobe w1-gpio')
 os.system('modprobe w1-therm')
 
@@ -18,7 +28,7 @@ device_file = device_folder + '/w1_slave'
 ###########################################
 ####### Load Configuration Settings for Firebase Project #######
 try:
-    with open('/home/pi/firebaseCredentials/firebaseCredentials.json') as json_data:
+    with open('../../firebaseCredentials/firebaseCredentials.json') as json_data:
         config = json.load(json_data)
 except:
     print("Error: Could not load firebaseCredentials")
@@ -57,7 +67,7 @@ while True:
     if temp != tempOld:
         tempOld = temp
         try:
-            with open('/home/pi/rpiHomeThermostat/TempSensor/temp.json', 'w') as json_data:
+            with open('../TempSensor/temp.json', 'w') as json_data:
                 json.dump({'tempLocal': temp}, json_data, sort_keys = True, indent = 4, ensure_ascii = False)
         except:
             pass

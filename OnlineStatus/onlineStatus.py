@@ -4,13 +4,21 @@ import time
 import pyrebase
 import json
 import datetime
+import os
+import sys
+
+###########################################
+# cd to Script Directory
+###########################################
+scriptDirectory = os.path.dirname(os.path.realpath(sys.argv[0]))
+os.chdir(scriptDirectory)
 
 ###########################################
 #Initialize Firebase Configuration and DB
 ###########################################
 ####### Load Configuration Settings for Firebase Project #######
 try:
-    with open('/home/pi/firebaseCredentials/firebaseCredentials.json') as json_data:
+    with open('../../firebaseCredentials/firebaseCredentials.json') as json_data:
         config = json.load(json_data)
 except:
     print("Error: Could not load firebaseCredentials")
